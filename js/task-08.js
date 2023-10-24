@@ -1,14 +1,22 @@
-const loginForm = document.querySelector(".login-form");
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.querySelector(".login-form");
 
-loginForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const formData = new FormData(loginForm);
-  const formObject = {};
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  formData.forEach((value, key) => {
-    formObject[key] = value;
+    const emailInput = loginForm.elements.email;
+    const passwordInput = loginForm.elements.password;
+
+    if (emailInput.value.trim() === "" || passwordInput.value.trim() === "") {
+      alert("Llene todos los campos");
+    } else {
+      const userData = {
+        email: emailInput.value,
+        password: passwordInput.value,
+      };
+
+      console.log(userData);
+      loginForm.reset();
+    }
   });
-
-  console.log(formObject);
-  loginForm.reset();
 });
